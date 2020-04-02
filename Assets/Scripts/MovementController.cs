@@ -28,6 +28,7 @@ public class MovementController : MonoBehaviour
     {
         if (canMove)
         {
+            
             //Calculate how out target velocity based on current input
             targetVelocity = new Vector3(playerInput.Horizontal, 0, playerInput.Vertical);
 
