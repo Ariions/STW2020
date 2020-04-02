@@ -38,17 +38,19 @@ public class MovementController : MonoBehaviour
                 targetVelocity = Vector3.Normalize(targetVelocity) * speed;
             else
                 targetVelocity *= speed;
-
-
+            
+            
             //Apply a force that tries to reach the target velocity, but does not exceed maxVelocityChange
-            Vector3 velocityChange = targetVelocity - rb.velocity;
+            Vector3 velocityChange = targetVelocity;
 
 
             velocityChange.x = Mathf.Clamp(velocityChange.x, -maxVelocityChange, maxVelocityChange);
             velocityChange.y = 0;
             velocityChange.z = Mathf.Clamp(velocityChange.z, -maxVelocityChange, maxVelocityChange);
 
-            rb.AddForce(velocityChange, ForceMode.VelocityChange);
+            //velocityChange = transform.TransformDirection(velocityChange);
+
+            rb.AddRelativeForce(velocityChange, ForceMode.VelocityChange);
         }
         //Apply gravity
         rb.AddForce(Vector3.down * gravity);
